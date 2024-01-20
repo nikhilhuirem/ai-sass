@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 
 export default function VideoPage() {
     const router = useRouter();
-    const [music, setMusic] = useState<string>();
+    const [video, setVideo] = useState<string>();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -31,11 +31,11 @@ export default function VideoPage() {
     const isLoading = form.formState.isSubmitting;
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try{
-            setMusic(undefined)
+            setVideo(undefined)
 
-            const response = await axios.post('/api/music', values);
+            const response = await axios.post('/api/video', values);
             console.log(response);
-            setMusic(response.data.audio);
+            setVideo(response.data[0]);
 
             form.reset();
         } 
@@ -54,8 +54,8 @@ export default function VideoPage() {
                 title="Video Generator"
                 description="Our most advanced video creator"
                 icon={Music}
-                iconColor="text-emerald-500"
-                bgColor="bg-emerald-500/10"
+                iconColor="text-orange-700"
+                bgColor="bg-orange-700/10"
             />
             <div className="px-4 lg:px-8">
                 <Form {...form}>
@@ -64,7 +64,7 @@ export default function VideoPage() {
                         render={({ field }) =>  (
                             <FormItem className="col-span-12 lg:col-span-10">
                                 <FormControl className="m-0 p-0">
-                                    <Input className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" disabled={isLoading} placeholder="Piano solo." {...field}/>
+                                    <Input className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent" disabled={isLoading} placeholder="Clown fish swimming around a coral reef." {...field}/>
                                 </FormControl>
                             </FormItem>
                         )}
@@ -83,13 +83,13 @@ export default function VideoPage() {
                         </div>
                     )}
 
-                    {!music && !isLoading && (
-                        <Empty label="No music generated yet" />
+                    {!video && !isLoading && (
+                        <Empty label="No video generated yet" />
                     )}
-                    {music && (
-                        <audio controls className="w-full mt-8">
-                            <source src={music} />
-                        </audio>
+                    {video && (
+                        <video className="w-full aspect-video mt-8 rounded-lg border bg-black" controls>
+                            <source src={video} />
+                        </video>
                     )}
                     
                 </div>
