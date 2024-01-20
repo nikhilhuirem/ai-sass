@@ -8,8 +8,10 @@ import { tools } from "@/constants";
 import { useRouter } from "next/navigation";
 
 
+
 export default function dashboardPAge() {
-  const router = useRouter();
+  const router = useRouter();  
+
   return <div className='mb-8 space-y-4'>
     <h2 className='text-2xl md:text-4xl font-bold text-center'>
       Explore the power of Ai

@@ -15,11 +15,13 @@ import { useState } from "react";
 import { Empty } from "@/components/empty";
 import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 
 export default function VideoPage() {
     const router = useRouter();
     const [video, setVideo] = useState<string>();
+    const proModal = useProModal();
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -41,7 +43,9 @@ export default function VideoPage() {
         } 
         catch (error: any) {
             //TODO: open pro model
-            console.log(error);
+            if(error?.response?.status == 403) {
+                proModal.onOpen();
+            }
         } 
         finally {
             router.refresh();
