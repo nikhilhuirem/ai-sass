@@ -17,7 +17,7 @@ export default function Heading({
     icon: Icon,
     iconColor,
     bgColor
-}): HeadingProps {
+}: HeadingProps) {
     return (
         <>
             <div className="px-4 lg:px-8 flex items-center gap-x-3 mb-8">
