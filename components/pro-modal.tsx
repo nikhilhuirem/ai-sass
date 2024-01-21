@@ -10,6 +10,7 @@ import { cn }  from "@/lib/utils";
 import { Check, Zap } from "lucide-react";
 import { Button } from "./ui/button";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export function ProModal() {
     const proModal = useProModal();
@@ -21,7 +22,7 @@ export function ProModal() {
             window.location.href = response.data.url;
 
         } catch(error) {
-            console.log(error,"Stripe error");
+            toast.error("Something went wrong");
         } finally {
             setLoading(false);
         }
