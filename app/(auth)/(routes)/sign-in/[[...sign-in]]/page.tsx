@@ -1,7 +1,7 @@
 import { SignIn } from "@clerk/nextjs";
 
 export default function Page() {
-    return <SignIn after/>
+    return <SignIn />
 }
 
 // import { UserButton } from "@clerk/nextjs";

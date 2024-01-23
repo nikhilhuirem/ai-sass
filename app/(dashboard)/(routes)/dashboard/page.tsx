@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 
 
 
-export default function dashboardPAge() {
+export default function DashboardPage() {
   const router = useRouter();  
 
   return <div className='mb-8 space-y-4'>
